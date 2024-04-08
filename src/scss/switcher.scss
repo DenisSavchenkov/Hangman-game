@@ -1,0 +1,60 @@
+// Переключатель на ночной режим---------------------
+
+.switch-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 20px;
+  right: 20px;
+}
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgb(226 232 240);
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background-color: rgb(30 64 175);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.6em);
+}
+
+.switcher-text {
+  font-size: 17px;
+  margin-left: 10px;
+  font-weight: 500;
+}

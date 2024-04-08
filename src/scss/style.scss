@@ -1,0 +1,67 @@
+// Сбрасывание стилей
+@import './reset.scss';
+@import './switcher.scss';
+
+// ШРИФТЫ
+@font-face {
+  font-family: Akzidenz;
+  font-weight: 400;
+  src: url(/fonts/AkzidenzGroteskPro-Regular.otf) format(opentype);
+}
+@font-face {
+  font-family: Akzidenz;
+  font-weight: 500;
+  src: url(/fonts/AkzidenzGroteskPro-Md.otf) format(opentype);
+}
+@font-face {
+  font-family: Akzidenz;
+  font-weight: 700;
+  src: url(/fonts/AkzidenzGroteskPro-BoldEx.otf) format(opentype);
+}
+
+/* ГЛОБАЛЬНЫЕ СТИЛИ ----------------------------*/
+body {
+  font-family: Akzidenz, sans-serif;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.dark-mode {
+  background-color: rgb(39 39 42);
+  color: #ffffff;
+
+  .button {
+    background-color: rgb(30 64 175);
+    color: #ffffff;
+    &:hover {
+      background-color: rgb(30 58 138);
+    }
+  }
+}
+
+// Игра-------------------------
+h1 {
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 14px 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  background-color: rgb(226 232 240);
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: rgb(203 213 225);
+  }
+}
