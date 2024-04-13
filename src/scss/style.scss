@@ -120,6 +120,10 @@ body {
   &:hover {
     background-color: rgb(203 213 225);
   }
+
+  &:disabled {
+    opacity: 0.2;
+  }
 }
 
 .button {

@@ -2,24 +2,23 @@ import { WORDS, KEYBOARD_LETTERS } from './constants';
 
 const gameDiv = document.querySelector('.game') as HTMLDivElement;
 const logo = document.querySelector('.logo') as HTMLHeadElement;
+let triesLeft: number = 10;
 
 // Добавление картинок
 const createGameImage = () => {
   const image = document.createElement('img');
-  image.src = 'images/hg-10.png';
+  image.src = 'images/hg-0.png';
   image.alt = 'Изображние игры';
   image.classList.add('game-img');
   return image;
 };
 
 // Создание пустых мест под буквы - placeholdres
-const createPlaceholdersHTML = (): string => {
-  // Берем сохраненное слово из хранилища
-  const word: string = JSON.stringify(sessionStorage.getItem('word'));
-
+const createPlaceholdersHTML = () => {
+  const word = sessionStorage.getItem('word') as string;
   const placeholderHTML = Array.from(word).reduce(
     (acc: string, _, index: number) => {
-      return acc + `<h2 id="${index}" class="letter-placeholder">_</h2>`;
+      return acc + `<h2 id="letter_${index}" class="letter-placeholder">_</h2>`;
     },
     ''
   );
@@ -28,7 +27,7 @@ const createPlaceholdersHTML = (): string => {
 
 // Создание счетчика того сколько осталось попыток
 const createTriesHTML = () => {
-  return `<p class="tries">Осталось попыток: <span class="tries-left">${10}</span></p>`;
+  return `<p class="tries">Осталось попыток: <span class="tries-left">${triesLeft}</span></p>`;
 };
 
 // Создание клавиатуры
@@ -50,11 +49,38 @@ const createKeyboard = () => {
   return keyboardDiv;
 };
 
+// Проверяем буквку на которую нажали
+const checkLetter = (letter: string) => {
+  const word = sessionStorage.getItem('word') as string;
+  const inputLetter = letter.toLowerCase();
+  // Если буквы в слове нету
+  if (!word.includes(inputLetter)) {
+    triesLeft -= 1;
+    const triesCounter = document.querySelector(
+      '.tries-left'
+    ) as HTMLSpanElement;
+    triesCounter.innerText = triesLeft.toString();
+    const image = document.querySelector('.game-img') as HTMLImageElement;
+    image.src = `images/hg-${10 - triesLeft}.png`;
+  } else {
+    // Если буква в слове есть
+
+    Array.from(word).forEach((currentLetter: string, index: number) => {
+      if (currentLetter === inputLetter) {
+        const placeholderLetter = document.getElementById(
+          `letter_${index}`
+        ) as HTMLHeadElement;
+        placeholderLetter.innerText = inputLetter.toUpperCase();
+      }
+    });
+  }
+};
+
 // Старт игры
-export const startGame = (): void => {
+export const startGame = () => {
   // Генерируем рандомное слово из нашего массива
-  const randomIndex: number = Math.floor(Math.random() * WORDS.length);
-  const wordToGuess: string = WORDS[randomIndex];
+  const randomIndex = Math.floor(Math.random() * WORDS.length);
+  const wordToGuess = WORDS[randomIndex];
 
   // Делам лого меньше, чтобы не отвлекало от игры
   logo.classList.add('logo-mini');
@@ -78,6 +104,10 @@ export const startGame = (): void => {
 
   // Событе когда кликаем на буквы
   keyboard.addEventListener('click', (event: MouseEvent) => {
-    console.log(event.target);
+    const element = event.target as HTMLInputElement;
+    if (element.tagName === 'BUTTON') {
+      checkLetter(element.id);
+      element.disabled = true;
+    }
   });
 };
