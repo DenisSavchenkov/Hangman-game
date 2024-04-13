@@ -54,9 +54,11 @@ const createKeyboard = () => {
 // Проверяем буквку на которую нажали
 const checkLetter = (letter: string) => {
   const word = sessionStorage.getItem('word') as string;
+  const lowerCaseWord = word.toLowerCase();
   const inputLetter = letter.toLowerCase();
+
   // Если буквы в слове нету
-  if (!word.includes(inputLetter)) {
+  if (!lowerCaseWord.includes(inputLetter)) {
     triesLeft -= 1;
 
     const triesCounter = document.querySelector(
@@ -76,25 +78,27 @@ const checkLetter = (letter: string) => {
     }
   } else {
     // Если буква в слове есть
-    Array.from(word).forEach((currentLetter: string, index: number) => {
-      if (currentLetter === inputLetter) {
-        triesCounet += 1;
+    Array.from(lowerCaseWord).forEach(
+      (currentLetter: string, index: number) => {
+        if (currentLetter === inputLetter) {
+          triesCounet += 1;
 
-        if (triesCounet === word.length) {
-          stopGame('win');
-          const quitButton = document.querySelector(
-            '.quit-game'
-          ) as HTMLButtonElement;
-          quitButton.remove();
-          return;
+          if (triesCounet === word.length) {
+            stopGame('win');
+            const quitButton = document.querySelector(
+              '.quit-game'
+            ) as HTMLButtonElement;
+            quitButton.remove();
+            return;
+          }
+
+          const placeholderLetter = document.getElementById(
+            `letter_${index}`
+          ) as HTMLHeadElement;
+          placeholderLetter.innerText = inputLetter.toUpperCase();
         }
-
-        const placeholderLetter = document.getElementById(
-          `letter_${index}`
-        ) as HTMLHeadElement;
-        placeholderLetter.innerText = inputLetter.toUpperCase();
       }
-    });
+    );
   }
 };
 
