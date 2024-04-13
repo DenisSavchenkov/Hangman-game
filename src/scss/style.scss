@@ -130,6 +130,7 @@ body {
   margin-top: 20px;
   padding: 14px 18px;
   font-weight: 500;
+  font-size: 16px;
   border-radius: 5px;
   background-color: rgb(226 232 240);
   transition: all 0.3s;
@@ -137,4 +138,34 @@ body {
   &:hover {
     background-color: rgb(203 213 225);
   }
+}
+
+.result-header {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  &.win {
+    color: #65a30d;
+  }
+
+  &.lose {
+    color: #dc2626;
+  }
+}
+
+.result-word {
+  margin-top: 10px;
+  font-size: 20px;
+  span {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 22px;
+  }
+}
+
+.quit-game {
+  position: absolute;
+  margin: 0;
+  top: 20px;
+  left: 20px;
 }
