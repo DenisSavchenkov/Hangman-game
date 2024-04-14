@@ -23,7 +23,8 @@
 body {
   font-family: Akzidenz, sans-serif;
   transition: all 0.3s;
-  overflow: hidden;
+  overflow: auto;
+  padding: 0 15px;
 }
 
 .dark-mode {
@@ -70,10 +71,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
 }
 
 .game-img {
   margin-top: 30px;
+  width: 100%;
   max-width: 400px;
 }
 
@@ -168,4 +171,115 @@ body {
   margin: 0;
   top: 20px;
   left: 20px;
+}
+
+// Адаптив
+
+@media (max-width: 950px) {
+  .quit-game {
+    padding: 10px 10px;
+  }
+
+  .game-img {
+    max-width: 300px;
+  }
+
+  .keyboard-button {
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 750px) {
+  .game-img {
+    max-width: 250px;
+  }
+
+  .letter-placeholder {
+    font-size: 18px;
+  }
+
+  .tries {
+    font-size: 18px;
+
+    .tries-left {
+      font-size: 20px;
+    }
+  }
+
+  .quit-game {
+    font-size: 12px;
+    left: 5px;
+  }
+
+  .switch-wrapper {
+    right: 5px;
+  }
+
+  .switch {
+    font-size: 14px;
+  }
+
+  .switcher-text {
+    font-size: 14px;
+  }
+
+  .keyboard {
+    gap: 21px;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .keyboard-button {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 700px) {
+  .logo {
+    font-size: 50px;
+  }
+
+  .start-button {
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 490px) {
+  .logo {
+    font-size: 33px;
+  }
+
+  .logo-mini {
+    display: none;
+  }
+}
+
+@media (max-width: 460px) {
+  .keyboard {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .keyboard-button {
+    font-size: 25px;
+  }
+
+  .game-img {
+    max-width: 200px;
+  }
+
+  .switch-wrapper {
+    top: 10px;
+  }
+
+  .quit-game {
+    top: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .keyboard {
+    gap: 15px;
+  }
+  .keyboard-button {
+    font-size: 20px;
+  }
 }

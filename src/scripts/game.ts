@@ -143,6 +143,7 @@ export const startGame = () => {
     const exitQuestion = confirm('Вы действительно хотите завершить игру?');
 
     if (exitQuestion) {
+      logo.classList.remove('logo-mini');
       gameDiv.innerHTML =
         ' <button class="start-button button">Начать игру</button>';
       const startButton = document.querySelector(
